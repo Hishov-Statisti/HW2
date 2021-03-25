@@ -1,5 +1,5 @@
 ---
-title: "Exercies 2 - Alon Godman & Ran Hassid"
+title: "Exercies 2 - Alon Goodman & Ran Hassid"
 output: html_notebook
 ---
 
