@@ -1,15 +1,20 @@
 ---
 title: "Exercies 2 - Alon Goodman & Ran Hassid"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
 ---
 
 # Q1 #
 
-## 1 ##
-### 1.1 ###
+## 1.1 ##
 
-The Density Function is (1/(-log(p)))*(beta*(1-p)*exp(-beta*x))/(1-(1-p)*exp(-beta*x)).
-The CDF is 1-(log(1-(1-p)*exp(-beta*x)))/log(p)
+```{r}
+knitr::include_graphics("1.1.png")
+```
+
+
 ```{r}
 func_1.1 <- function(beta,p){
   inverse_func_1.1 <- function(u,beta,p){
@@ -24,7 +29,13 @@ func_1.1 <- function(beta,p){
 func_1.1(2,0.5)
 ```
 
-### 1.2 ###
+## 1.2 ##
+
+
+```{r}
+knitr::include_graphics(c("1.2.1.png","1.2.2.png"))
+```
+
 ```{r}
 func_1.2 <- function(a,b,c){
   inverse_func_1.2 <- function(u,a,b,c){
@@ -39,10 +50,16 @@ func_1.2 <- function(a,b,c){
 func_1.2(3,5,4)
 
 ```
-### 1.3 ###
 
-The Density Function is a*b*x^(a-1)*(1-x^a)^(b-1)
+## 1.3 ##
+
+
 ```{r}
+knitr::include_graphics("1.3.png")
+```
+
+```{r}
+
 func_1.3 <- function(a,b){
   inverse_func_1.3 <- function(u,a,b){
     (1-(1-u)^(1/b))^(1/a)
@@ -57,8 +74,12 @@ func_1.3(3,3)
 ```
 
 
+## 1.4 ##
 
-### 1.4 ###
+```{r}
+knitr::include_graphics("1.4.png")
+```
+
 ```{r}
 func_1.4 <- function(){
   inverse_func_1.4 <- function(u){
@@ -74,7 +95,11 @@ func_1.4()
 
 ```
 
-### 1.5.a ###
+## 1.5 ##
+### a ###
+```{r}
+knitr::include_graphics("1.5.1.png")
+```
 
 ```{r}
 func_1.5 <- function(alpha,s,m){
@@ -91,12 +116,17 @@ func_1.5(alpha = 3,s = 2,m = 5)
 
 ```
 
+### b ###
 
-### 2 ###
+```{r}
+knitr::include_graphics("1.5.2.png")
+```
+
+# Q2 #
 
 X~exp(mu), Y~exp(theta), z = X - Y (X and Y are independent)
 
-### 2.A ###
+## a ##
 calculation of Z in 'naive' way:
 
 ```{r}
@@ -108,11 +138,15 @@ hist(Z.naive,50)
 
 ```
 
-### 2.B ###
+## b ##
 calculation of Z with ITS:
 
 ```{r}
-####################
+knitr::include_graphics("2.2.png")
+```
+
+```{r}
+
 func_2.B <- function(mu,theta){
   inverse_func_2.B <- function(u,mu,theta){
     ifelse(test = u > mu/(theta+mu) , yes = -log((mu+theta)*(1-u)/theta) / mu , no =  log((mu+theta)*(u)/mu) / theta)
@@ -126,20 +160,23 @@ Z.ITS <- func_2.B(mu = 0.5, theta = 0.2)
 hist(Z.ITS,50)
 summary(Z.ITS)
 
-###############
 ```
 
-### 2.C ###
+## c ##
 comparison between Z, using qqplot, calculated in 'naive' way and ITS:
 
 ```{r}
 qqplot(Z.naive,Z.ITS)
 ```
 
+# Q3 #
 
+## a ##
 
+```{r}
+knitr::include_graphics("3.1.png")
+```
 
-### 3.A ###
 ```{r}
 max_exp_function <- function(n,theta,n.3){
   U.3 <- runif(n = n,min = 0,max = 1) # Lets sample 10000 samples from U(0,1) distribution.
@@ -154,16 +191,23 @@ summary(Q.3.a)
 ```
 
 
-### 3.B ###
+## b ##
+
 ```{r}
-max_exp_function <- function(n,theta,n.3){
-  U.3 <- runif(n = n,min = 0,max = 1) # Lets sample 10000 samples from U(0,1) distribution.
-  - log(1-(U.3)^(1/n.3)) / theta
-}
-
-Q.3.a <- max_exp_function(n = 10000,theta = 2,n.3 = 30)
-
-hist(Q.3.a,50)
-summary(Q.3.a)
-
+knitr::include_graphics("3.2.png")
 ```
+
+## c ##
+
+```{r}
+knitr::include_graphics("3.3.png")
+```
+
+# Q4 #
+
+```{r}
+knitr::include_graphics("4.png")
+```
+
+
+
