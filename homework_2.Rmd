@@ -115,7 +115,7 @@ calculation of Z with ITS:
 ####################
 func_2.B <- function(mu,theta){
   inverse_func_2.B <- function(u,mu,theta){
-    ifelse(test = u >= mu/(theta+mu) , yes = (log((theta+mu)*u/mu) / theta), no = (-log(((mu+theta) * (1-u)) / theta)               / mu) )
+    ifelse(test = u > mu/(theta+mu) , yes = -log((mu+theta)*(1-u)/theta) / mu , no =  log((mu+theta)*(u)/mu) / theta)
     } # Lets compute the inverse function: F(x)=u, u~U(0,1).
   U.2.B <- runif(n = 10000,min = 0,max = 1) # Lets sample 10000 samples from U(0,1) distribution.
   X.2.B <- inverse_func_2.B(U.2.B,mu,theta) # For any u in U we compute the x value.
